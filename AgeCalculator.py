@@ -29,3 +29,42 @@ print("\n")
 print("Hi", name)
 print("You have lived ",total.days,"days, which equals to", total_seconds_lived,"seconds on earth")
 print("You have",day_left," days to your next birthday and your next birthday is",datenextyear.strftime("%b/%d/%Y"))
+
+
+see what c# can do
+
+the line of code using c# is little smaller compare to Python 
+
+{
+DateTime bDay = new DateTime(2000, 2, 29);
+DateTime now = new DateTime(2009, 2, 28);
+MessageBox.Show(string.Format("Test {0} {1} {2}",
+                CalculateAgeWrong1(bDay, now),     // outputs 9
+                CalculateAgeWrong2(bDay, now),     // outputs 9
+                CalculateAgeCorrect(bDay, now)));  // outputs 8
+}
+Here you have the methods:
+
+public int CalculateAgeWrong1(DateTime birthDate, DateTime now)
+{
+    return new DateTime(now.Subtract(birthDate).Ticks).Year - 1;
+}
+
+public int CalculateAgeWrong2(DateTime birthDate, DateTime now)
+{
+    int age = now.Year - birthDate.Year;
+
+    if (now < birthDate.AddYears(age))
+        age--;
+
+    return age;
+}
+
+public int CalculateAgeCorrect(DateTime birthDate, DateTime now)
+{
+    int age = now.Year - birthDate.Year;
+
+    if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
+        age--;
+
+    return age;
